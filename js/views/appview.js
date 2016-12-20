@@ -17,7 +17,6 @@ app.AppView = Backbone.View.extend({
 		this.$('.food-entry-header').hide();
 
 		this.listenTo(app.journals, 'add', this.addDateEntry);
-		this.listenTo(app.journals, 'reset', this.addAllDates);
 
 		app.vent.on('editJournal', this.showJournal, this);
 		app.vent.on('foodQuery', this.foodQuery, this);
@@ -25,7 +24,7 @@ app.AppView = Backbone.View.extend({
 		app.vent.on('showWelcomeMessage', this.showWelcomeMessage, this);
 		app.vent.on('toggleHeader', this.toggleFoodEntryHeader, this);
 
-		app.journals.fetch({reset: true});
+		app.journals.fetch();
 
 		// Initiates ajax start and stop event callbacks.
 		$(document).ajaxStart(function() {
@@ -60,11 +59,6 @@ app.AppView = Backbone.View.extend({
 		} else {
 			this.$('.date-list').append(view.render().el);
 		}
-	},
-
-	// Calls function to add date entry list view for all journals
-	addAllDates: function() {
-		app.journals.each(this.addDateEntry, this);
 	},
 
 	// Creates and renders a new journal edit view
