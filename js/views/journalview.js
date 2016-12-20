@@ -151,13 +151,11 @@ app.JournalView = Backbone.View.extend({
 
 	// Removes any displayed error messages
 	removeErrorMessage: function() {
-		console.log("removeErrorMessage function called");
 		if (this.$('.search-failure').length) {
 			this.$('.search-failure').remove();
 		}
 
 		if (this.$('.no-results').length) {
-			console.log("remove no-results error message");
 			this.$('.no-results').remove();
 		}
 	},
@@ -169,7 +167,6 @@ app.JournalView = Backbone.View.extend({
 
 	// Loops through existing entries and triggers event to render food item view
 	addAllFoodEntries: function(number) {
-		console.log("addAllFoodEntries called");
 		for (var i = 1; i <= number; i++) {
 			var currentEntry = 'entry' + i.toString();
 			if (this.model.get(currentEntry)) {
